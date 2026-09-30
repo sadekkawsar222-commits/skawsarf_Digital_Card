@@ -132,7 +132,7 @@
   .company .mono{display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;color:#a30008;padding:0}
   .role{margin:4px 0 0;font-size:.82rem;font-weight:400;letter-spacing:-.005em;color:rgba(255,255,255,.66)}
 
-  footer{margin-top:30px;width:100%}
+  .folio{margin-top:26px;display:flex;flex-direction:column;align-items:center;width:100%}.folio .cap{margin:0 0 8px;font-size:.68rem;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:rgba(255,255,255,.5)}.folio ul{list-style:none;margin:0;padding:0;display:flex;gap:12px;justify-content:center}.folio a{position:relative;display:flex;align-items:center;justify-content:center;width:56px;height:44px;border-radius:999px;color:rgba(255,255,255,.92);text-decoration:none;background:rgba(255,255,255,.10);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 0 0 .5px rgba(255,255,255,.22);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);transition:transform .3s ease,background .3s ease,box-shadow .3s ease;outline:none;-webkit-tap-highlight-color:transparent}.folio a svg{width:26px;height:26px;display:block}.folio a:active{transform:scale(.95)}.folio a:focus-visible{box-shadow:0 0 0 2px rgba(255,255,255,.75)}@media (hover:hover){.folio a:hover{transform:scale(1.08);background:rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.45),0 0 22px rgba(255,255,255,.28)}}footer{margin-top:30px;width:100%}
   footer .div{height:1px;background:linear-gradient(90deg,rgba(255,255,255,0),rgba(255,255,255,.28) 30%,rgba(255,255,255,.28) 70%,rgba(255,255,255,0))}
   footer blockquote{margin:22px 0 0;font-size:.95rem;font-weight:300;font-style:italic;letter-spacing:-.005em;color:rgba(255,255,255,.62)}
   figure{margin:0}
@@ -159,7 +159,7 @@
       <span class="rule reveal" aria-hidden="true"></span>
       <p class="company reveal" id="company"></p>
       <p class="role reveal" id="role"></p>
-      <footer class="reveal">
+      <section class="folio" aria-label="Portfolio"><p class="cap reveal">Portfolio</p><ul id="folio"></ul></section><footer class="reveal">
         <div class="div" aria-hidden="true"></div>
         <figure><blockquote id="quote"></blockquote></figure>
       </footer>
@@ -169,8 +169,8 @@
 
 <script>
 /* =====================================================================
-   CONFIG: change details here only
-   ===================================================================== */
+const FOLIO=[[
+===================================================================== */
 const CONFIG = {
   name: "Sadek Kawsar",
   initials: "SK",
@@ -187,7 +187,7 @@ const CONFIG = {
   /* Optional faint background mark. Paste a data URI or image URL of a logo you have
      the right to use. Leave "" for none. It is shown at about 7% opacity. */
   watermark: "",
-  quote: "Keep on stacking values.",
+  quote: "Keep on stacking values.",portfolio:{behance:"https://www.behance.net/sadekkfahim",contra:"https://contra.com/Eskaycreation_skawsarf/work?r=Eskaycreation_skawsarf"},
   socials: {
     facebook: "https://www.facebook.com/skawsarf22/",
     linkedin: "https://www.linkedin.com/in/skawsarf",
@@ -261,7 +261,7 @@ $("logo").onerror = function () {
 $("role").textContent = c.role;
 $("quote").textContent = "\u201C" + c.quote + "\u201D";
 
-/* watermark */
+const FOLIO=[["Behance",c.portfolio.behance,'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M22 7h-7V5h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.782 5.375 4.426.078.506.109 1.188.095 2.14H15.97c.13 3.211 3.483 3.312 4.588 2.029h3.168zm-7.686-4h4.965c-.105-1.547-1.136-2.219-2.477-2.219-1.466 0-2.277.768-2.488 2.219zm-9.574 6.988H0V5.021h6.953c5.476.081 5.58 5.444 2.72 6.906 3.461 1.26 3.577 8.061-3.207 8.061zM3 11h3.584c2.508 0 2.906-3-.312-3H3v3zm3.391 3H3v3.016h3.341c3.055 0 2.868-3.016.05-3.016z"/></svg>'],["Contra",c.portfolio.contra,'<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M18.5 8.2A7.5 7.5 0 1 0 18.5 15.8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/></svg>']];$("folio").innerHTML=FOLIO.filter(f=>f[1]).map(f=>`<li class="reveal"><a href="${esc(withProto(f[1]))}" aria-label="${esc(f[0])}" title="${esc(f[0])}" target="_blank" rel="noopener noreferrer">${f[2]}</a></li>`).join("");if(!FOLIO.some(f=>f[1])){document.querySelector(".folio").style.display="none"}/* watermark */
 if (c.watermark) { const w = $("wm"); w.style.backgroundImage = `url("${c.watermark}")`; w.classList.add("on"); }
 
 /* entrance: staggered, about 1 second in total */
